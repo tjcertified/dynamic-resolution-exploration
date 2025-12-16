@@ -2,7 +2,7 @@
 
 ## General Information
 * Author: Thomas Williams
-* Date: 1/16/2-25
+* Date: 1/16/2025
 * Description: This is code and slides that explore the Dynamic Resolution techniques described in the MITRE ATT&CK Framework and are used frequently in C2 style cyber attacks.
 
 ## Why You Should Care
