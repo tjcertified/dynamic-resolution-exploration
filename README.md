@@ -1,7 +1,5 @@
 # Dynamic Resolution Exploration README
 
-# CAM Table Overflow README
-
 ## General Information
 * Author: Thomas Williams
 * Date: 1/16/2-25
