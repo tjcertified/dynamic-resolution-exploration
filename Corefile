@@ -1,0 +1,13 @@
+.:53 {
+  forward . 127.0.0.1
+  log
+  errors
+  health :8088
+}
+
+csc840.lan:53 {
+  file /etc/coredns/db.csc840.lan
+  log
+  errors
+  loadbalance round_robin
+}

@@ -1,0 +1,16 @@
+$TTL    5
+$ORIGIN csc840.lan.
+@               IN  SOA thomaswilliams.csc840.lan. admin.bademail.com. (
+                2025111733 ; serial
+                7200       ; refresh (2 hours)
+                3600       ; retry (1 hour)
+                1209600    ; expire (2 weeks)
+                3600       ; minimum (1 hour)
+                )
+
+thomaswilliams  IN  A   192.168.1.10
+pdtdndrdtdtndr  IN  A   192.168.1.30    ; attacker
+nnngthfllwng    IN  A   192.168.1.30    ; attacker
+nnngthfllwng    IN  A   192.168.1.31    ; attacker
+nnngthfllwng    IN  A   192.168.1.32    ; attacker
+                

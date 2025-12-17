@@ -1,0 +1,53 @@
+services:
+  # Inspired by https://medium.com/@bensoer/setup-a-private-homelab-dns-server-using-corecns-and-docker-edcfdded841a
+  coredns:
+    image: coredns/coredns:1.13.1
+    container_name: coredns
+    command: -conf /etc/coredns/Corefile -dns.port 53
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "8088:8088"
+    volumes:
+      - ./Corefile:/etc/coredns/Corefile
+      - ./db.csc840.lan:/etc/coredns/db.csc840.lan
+    networks:
+      simple_net:
+        ipv4_address: 192.168.1.10
+
+
+  infected:
+    build: ./infected
+    container_name: infected
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes:
+      - ./client.py:/tmp/client.py
+    networks:
+      simple_net:
+        ipv4_address: 192.168.1.20
+
+
+  attacker:
+    build: ./attacker
+    container_name: attacker
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes:
+      - ./docker_share:/docker_share
+    networks:
+      simple_net:
+        ipv4_address: 192.168.1.30
+    command: ["tail","-f","/dev/null"]
+
+
+networks:
+  simple_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.gateway_mode_ipv6: "routed"
+      com.docker.network.bridge.gateway_mode_ipv4: "routed"
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+  
